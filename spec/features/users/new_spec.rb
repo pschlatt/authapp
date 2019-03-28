@@ -5,14 +5,30 @@ RSpec.describe 'As a visitor' do
 
     visit new_user_path
 
-    fill_in "user.name", with: 'Paul'
-    fill_in 'user.email', with: 'paul.h.schlattmann@gmail.com'
-    fill_in 'user.password', with: 'Becool27'
+    fill_in "Name", with: 'Paul'
+    fill_in 'Email', with: 'paul.h.schlattmann@gmail.com'
+    fill_in 'Password', with: 'Becool27'
 
     click_button 'Create User'
 
     expect(current_path).to eq(root_path)
-    expect(page).to have_content(User.last.name)
+    expect(User.last.name).to eq("Paul")
+
+  end
+
+  it 'can login' do
+
+    visit root_path
+
+    click_link "Login"
+
+    fill_in 'email', with: 'paul.h.schlattmann@gmail.com'
+    fill_in 'password', with: 'Becool27'
+
+    click_button 'Login'
+
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content("It worked.")
 
   end
 

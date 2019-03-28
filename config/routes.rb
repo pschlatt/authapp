@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root to: 'welcome#index'
 
-  resources :user 
+  resources :users
+
+  resources :sessions
 
 end
